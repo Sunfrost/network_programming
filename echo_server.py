@@ -10,9 +10,19 @@ conn, (remotehost, remoteport) = sock.accept()  # connection socket, return conn
 print('connected by', remotehost, remoteport)
 
 while True:
-    data = conn.recv(BUFSIZE)  # receiving data
-    if not data:
+    try:
+        data = conn.recv(BUFSIZE)  # receiving data
+    except:
+        conn.close()
         break
-    print("Received message:", data.decode())  # print received data
-    conn.send(data)  # re-send received data to client
+    else:
+        if not data:
+            break
+        print("Received message:", data.decode())  # print received data
+
+    try:
+        conn.send(data)  # re-send received data to client
+    except:
+        conn.close()
+        break
 conn.close()
