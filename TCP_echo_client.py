@@ -1,7 +1,8 @@
 import socket
 
-port = int(input("Port No: "))
+#port = int(input("Port No: "))
 host = 'localhost'
+port = 3400
 address = (host, port)  # address format -> always (ip, port) tuple
 BUFSIZE = 1024
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
