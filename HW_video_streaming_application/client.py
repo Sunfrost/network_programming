@@ -4,9 +4,10 @@ import cv2
 import socket
 import numpy as np
 from PIL import Image, ImageTk
+from UI import VideoChatUI
 
 server_ip = '127.0.0.1'
-server_port = 30000
+server_port = 3400
 
 
 class VideoStreamThread(threading.Thread):
@@ -63,11 +64,13 @@ def send_message():
     client_socket.sendall(message.encode())
     entry.delete(0, tk.END)
 
-
 entry = tk.Entry(root, width=50)
 entry.pack()
 send_button = tk.Button(root, text="Send", command=send_message)
 send_button.pack()
+
+'''video = VideoStreamThread(video_thread)
+video.run()'''
 
 root.mainloop()
 
